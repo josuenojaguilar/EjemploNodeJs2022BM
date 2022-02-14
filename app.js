@@ -5,6 +5,8 @@ var app = express();
 
 // IMPORTACIONES RUTAS
 const EjemploRutas = require('./src/routes/ejemplo.routes');
+const UsuarioRutas = require('./src/routes/usuario.routes');
+const EncuestaRutas =require('./src/routes/encuesta.routes');
 
 // MIDDLEWARES -> INTERMEDIARIOS
 app.use(express.urlencoded({ extended: false }));
@@ -14,7 +16,7 @@ app.use(express.json());
 app.use(cors());
 
 // CARGA DE RUTAS localhost:3000/api/obtenerProductos
-app.use('/api', EjemploRutas);
+app.use('/api', EjemploRutas, UsuarioRutas, EncuestaRutas);
 
 
 module.exports = app;

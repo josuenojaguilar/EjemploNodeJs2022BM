@@ -1,6 +1,7 @@
 // IMPORTACIONES
 const express = require('express');
 const ejemploController = require('../controllers/ejemplo.controller');
+const md_autenticacion =  require('../middlewares/autenticacion');
 
 // RUTAS
 var api = express.Router();
@@ -14,7 +15,7 @@ api.delete('/eliminarProducto/:idProducto', ejemploController.EliminarProducto);
 
 // EJEMPLOS
 api.get('/kinal/:idKinal', ejemploController.EjemploParametroRuta);
-api.get('/opcional/:idOpcional?', ejemploController.EjemploParametroRutaOpcional);
+api.get('/opcional/:idOpcional?', md_autenticacion.Auth ,ejemploController.EjemploParametroRutaOpcional);
 
 
 module.exports = api;

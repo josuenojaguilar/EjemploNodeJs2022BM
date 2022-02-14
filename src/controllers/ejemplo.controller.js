@@ -102,7 +102,7 @@ function EjemploParametroRutaOpcional (req, res) {
     if(idOp) {
         res.send("Hola Mundo, el id Opcional obtenido es: " + idOp);
     } else {
-        res.send("No se envio ningun parametro opcional.")
+        res.send("El correo del Usuario es: " + req.user.email)
     }    
 }
 
