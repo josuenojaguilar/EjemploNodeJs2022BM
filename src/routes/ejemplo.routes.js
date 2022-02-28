@@ -12,6 +12,7 @@ api.get('/buscarNombreProd/:nombreProducto', ejemploController.ObtenerProductoNo
 api.post('/agregarProductos', ejemploController.AgregarProducto);
 api.put('/editarProductos/:idProducto', ejemploController.EditarProducto);
 api.delete('/eliminarProducto/:idProducto', ejemploController.EliminarProducto);
+api.put('/stockProducto/:idProducto', ejemploController.stockProducto);
 
 // EJEMPLOS
 api.get('/kinal/:idKinal', ejemploController.EjemploParametroRuta);

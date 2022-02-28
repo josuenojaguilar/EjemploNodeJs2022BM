@@ -51,8 +51,10 @@ function AgregarProducto (req, res){
     var parametros = req.body;
     var productoModelo = new Productos();
 
-    if( parametros.nombre ) {
+    if( parametros.nombre && parametros.cantidad && parametros.precio ) {
         productoModelo.nombre = parametros.nombre;
+        productoModelo.cantidad = parametros.cantidad;
+        productoModelo.precio = parametros.precio;
 
         productoModelo.save((err, productoGuardado) => {
             if(err) return res.status(500).send({ mensaje: "Error en la peticion" });
@@ -88,6 +90,31 @@ function EliminarProducto(req, res) {
     })
 }
 
+// INCREMENTAR/RESTAR LA CANTIDAD DEL PRODUCTO
+
+function stockProducto(req, res) {
+    const productoId = req.params.idProducto;
+    const parametros = req.body;
+
+    Productos.findByIdAndUpdate(productoId, { $inc : { cantidad: parametros.cantidad } }, { new: true },
+        (err, productoModificado) => {
+            if(err) return res.status(500).send({ mensaje: "Error en la peticion" });
+            if(!productoModificado) return res.status(500).send({ mensaje: 'Error al editar la cantidad del Producto'});
+
+            return res.status(200).send({ producto: productoModificado});
+        })
+
+    
+}
+
+
+
+
+
+
+
+
+
 // Parametro en ruta obligatorio
 function EjemploParametroRuta (req, res) {
     var id = req.params.idKinal;
@@ -114,5 +141,6 @@ module.exports = {
     ObtenerProductoNombre,
     AgregarProducto,
     EditarProducto,
-    EliminarProducto
+    EliminarProducto,
+    stockProducto
 }
