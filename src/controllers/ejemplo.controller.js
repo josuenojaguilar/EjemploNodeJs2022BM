@@ -6,10 +6,6 @@ function ObtenerProductos (req, res) {
     Productos.find((err, productosObtenidos) => {
         if (err) return res.send({ mensaje: "Error: " + err })
 
-        for (let i = 0; i < productosObtenidos.length; i++) {
-            console.log(productosObtenidos[i].nombre)
-        }
-
         return res.send({ productos: productosObtenidos })
         /* Esto retornara
             {
