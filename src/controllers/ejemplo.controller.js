@@ -51,7 +51,7 @@ function AgregarProducto (req, res){
         productoModelo.nombre = parametros.nombre;
         productoModelo.cantidad = parametros.cantidad;
         productoModelo.precio = parametros.precio;
-
+        productoModelo.vendido = 0;
         productoModelo.save((err, productoGuardado) => {
             if(err) return res.status(500).send({ mensaje: "Error en la peticion" });
             if(!productoGuardado) return res.status(404).send( { mensaje: "Error, no se agrego ningun producto"});
