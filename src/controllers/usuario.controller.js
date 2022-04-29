@@ -37,6 +37,9 @@ function Registrar(req, res) {
                         .send({ mensaje: 'Este correo, ya  se encuentra utilizado' });
                 }
             })
+    }else{
+       return res.status(400)
+        .send({mensaje: 'No estás enviando todos los parámetros obligatorios'});
     }
 }
 
@@ -88,8 +91,9 @@ function EditarUsuario(req, res) {
             if(!usuarioActualizado) return res.status(500)
                 .send({ mensaje: 'Error al editar el Usuario'});
             
+            delete usuarioActualizado.password;
             return res.status(200).send({usuario : usuarioActualizado})
-        })
+        }).lean()
 }
 
 function agregarProductoCarrito(req, res) {
